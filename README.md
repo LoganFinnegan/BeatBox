@@ -113,7 +113,6 @@ pry(main)> list.to_string
 ```
 Notice the key point here – the first piece of data we append becomes the Head, while the second becomes the Next Node of that (Head) node.
 
-# Beat Box  
 ## Iteration 2  
 ### Additional Methods — insert and prepend
 
@@ -194,8 +193,7 @@ pry(main)> list.pop
 
 pry(main)> list.to_string
 #=> "deep woo shi"
-```
-# Beat Box  
+``` 
 ## Iteration 3  
 ### Creating the BeatBox Linked List “Wrapper”
 
@@ -293,8 +291,8 @@ pry(main)> bb.play
 ```
 Note: You do not need to test the play method, but are welcome to give it a shot
 
-Iteration 4 - Extensions
-1. Validating Beats
+##Iteration 4 - Extensions
+###1. Validating Beats
 
 There are a lot of words which aren’t going to work for beats. Like Mississippi.
 
