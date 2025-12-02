@@ -291,8 +291,8 @@ pry(main)> bb.play
 ```
 Note: You do not need to test the play method, but are welcome to give it a shot
 
-##Iteration 4 - Extensions
-###1. Validating Beats
+## Iteration 4 - Extensions
+### 1. Validating Beats
 
 There are a lot of words which aren’t going to work for beats. Like Mississippi.
 
