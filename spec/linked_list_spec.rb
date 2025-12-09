@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe 'LinkedList' do
   before(:each) do
@@ -10,7 +10,7 @@ RSpec.describe 'LinkedList' do
   end
 
   it '#append sets head for first node' do
-    @list.append('doop')
+    expect(@list.append('doop')).to eq('doop')
 
     expect(@list.head.data).to eq('doop')
     expect(@list.head.next_node).to eq(nil)
@@ -58,7 +58,7 @@ RSpec.describe 'LinkedList' do
     @list.prepend("dop")
     expect(@list.to_string).to eq("dop plop suu")
 
-    @list.insert(1, "woo")
+    expect(@list.insert(1, "woo")).to eq("woo")
     expect(@list.to_string).to eq("dop woo plop suu")
   end
 
@@ -82,5 +82,24 @@ RSpec.describe 'LinkedList' do
     expect(@list.pop).to eq("blop")
     expect(@list.pop).to eq("shu")
     expect(@list.to_string).to eq("deep woo shi")
+  end
+
+  it '#pop handles edge cases' do
+    expect(@list.pop).to eq(nil)
+
+    @list.append("only")
+    expect(@list.pop).to eq("only")
+    expect(@list.head).to eq(nil)
+  end
+
+  it '#includes?' do
+    @list.append("deep")
+    @list.append("woo")
+    @list.append("shi")
+
+    expect(@list.includes?("deep")).to be true
+    expect(@list.includes?("woo")).to be true
+    expect(@list.includes?("dep")).to be false
+    expect(@list.includes?("shu")).to be false
   end
 end

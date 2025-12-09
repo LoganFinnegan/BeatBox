@@ -5,16 +5,17 @@ class LinkedList
     @head = nil 
   end
 
-  def append(string)
+  def append(beat)
     if @head == nil 
-      @head = Node.new(string)
+      @head = Node.new(beat)
     else
       x = @head 
       until x.next_node.nil?
         x = x.next_node
       end
-      x.next_node = Node.new(string)
+      x.next_node = Node.new(beat)
     end
+    beat
   end
 
   def count
@@ -29,64 +30,67 @@ class LinkedList
 
 
   def to_string
-    parts   = []
+    node_data   = []
     current = head
     while current
-      parts << current.data
+      node_data << current.data
       current = current.next_node
     end
-    parts.join(' ')
+    node_data.join(' ')
   end
 
-  def prepend(string)
-    x           = Node.new(string)
-    x.next_node = head
-    @head       = x
+  def prepend(beat)
+    new_node           = Node.new(beat)
+    new_node.next_node = head
+    @head              = new_node
   end
 
-  def insert(index, string)
-    return prepend(string) if index <= 0 || head.nil?
+  def insert(index, beat)
+    return prepend(beat) if index <= 0 || head.nil?
 
-    new_node = Node.new(string)
+    new_node = Node.new(beat)
     prev     = head
     current  = head.next_node
-    pos      = 1
-
-    while current && pos < index
+    (index - 1).times do
+      break unless current
       prev    = current
       current = current.next_node
-      pos    += 1
     end
 
     prev.next_node     = new_node
     new_node.next_node = current
+    beat
   end 
 
-  def find(index, elements)
-    current = head
-    pos     = 0
-
-    while current && pos < index
-      pos    += 1
-      current =  current.next_node 
-    end
-
-    string = []
-    while current && string.size < elements
-      string << current.data
-      current = current.next_node
-    end
-    string.join(" ")
+  def find(index, count_returned)
+    to_string.split[index, count_returned].to_a.join(" ")
   end
 
   def pop 
+    return nil if head.nil?
+
+    return_value = head.data
+    if head.next_node.nil?
+      @head = nil
+      return return_value
+    end
+
     current = head
     prev    = nil
-    until current.next_node == nil
+    until current.next_node.nil?
       prev    = current
       current = current.next_node
     end
     prev.next_node = nil
     current.data
+  end
+
+  def includes?(beat)
+    current = head
+    while current
+      return true if current.data == beat
+      current = current.next_node
+    end
+    false
   end
 end
